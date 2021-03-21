@@ -6,7 +6,7 @@
  * @param str1 first string
  * @param str2 second string
  */
-const validAnagram = (str1: string, str2: string) => {
+export const validAnagram = (str1: string, str2: string) => {
   const getFreq = (str: string) => {
     const freq: { [key: string]: number } = {};
     for (let i = 0; i < str.length; i++) {
@@ -18,10 +18,8 @@ const validAnagram = (str1: string, str2: string) => {
   const freq1 = getFreq(str1);
   const freq2 = getFreq(str2);
 
-  return (
-    Object.keys(freq1).length === Object.keys(freq2).length &&
-    Object.keys(freq1).every((key) => freq1[key] === freq2[key])
-  );
-};
+  const sameLength = Object.keys(freq1).length === Object.keys(freq2).length;
+  const sameFreq = Object.keys(freq1).every((key) => freq1[key] === freq2[key]);
 
-export default validAnagram;
+  return sameLength && sameFreq;
+};
