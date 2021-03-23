@@ -1,3 +1,11 @@
+const createFrequencyMap = (str: string) => {
+  const freq: { [key: string]: number } = {};
+  for (let i = 0; i < str.length; i++) {
+    freq[str[i]] = freq[str[i]] ? freq[str[i]] + 1 : 1;
+  }
+  return freq;
+};
+
 /**
  * Determine if the second string is an anagram of the first. An anagram is a
  * word, phrase, or name formed by rearranging the letters of another, such as
@@ -7,19 +15,14 @@
  * @param str2 second string
  */
 export const validAnagram = (str1: string, str2: string) => {
-  const getFreq = (str: string) => {
-    const freq: { [key: string]: number } = {};
-    for (let i = 0; i < str.length; i++) {
-      freq[str[i]] = freq[str[i]] ? freq[str[i]] + 1 : 1;
-    }
-    return freq;
-  };
+  const freqMap1 = createFrequencyMap(str1);
+  const freqMap2 = createFrequencyMap(str2);
 
-  const freq1 = getFreq(str1);
-  const freq2 = getFreq(str2);
-
-  const sameLength = Object.keys(freq1).length === Object.keys(freq2).length;
-  const sameFreq = Object.keys(freq1).every((key) => freq1[key] === freq2[key]);
+  const sameLength =
+    Object.keys(freqMap1).length === Object.keys(freqMap2).length;
+  const sameFreq = Object.keys(freqMap1).every(
+    (key) => freqMap1[key] === freqMap2[key]
+  );
 
   return sameLength && sameFreq;
 };
