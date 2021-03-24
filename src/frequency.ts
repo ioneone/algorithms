@@ -26,3 +26,13 @@ export const validAnagram = (str1: string, str2: string) => {
 
   return sameLength && sameFreq;
 };
+
+/**
+ * Given two integers, find out if the two numbers have the same
+ * frequency of digits.
+ * @param num1 first integer
+ * @param num2 second integer
+ */
+export const sameFrequency = (num1: number, num2: number) => {
+  return validAnagram(Math.abs(num1).toString(), Math.abs(num2).toString());
+};
